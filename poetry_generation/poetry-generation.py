@@ -36,7 +36,7 @@ model.add(Dense(total_words/2, activation='relu', kernel_regularizer=regularizer
 model.add(Dense(total_words, activation='softmax'))
 model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
 
-history = model.fit(predictors, label, epochs=400, verbose=1)
+history = model.fit(predictors, label, epochs=800, verbose=1)
 acc = history.history['acc']
 loss = history.history['loss']
 epochs = range(len(acc))
