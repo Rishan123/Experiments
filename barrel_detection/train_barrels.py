@@ -1,6 +1,3 @@
-# USAGE
-# python train.py --dataset dataset
-
 # import the necessary packages
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
 from tensorflow.keras.applications import VGG16
@@ -22,6 +19,7 @@ import numpy as np
 import argparse
 import cv2
 import os
+import time
 
 # construct the argument parser and parse the arguments
 ap = argparse.ArgumentParser()
@@ -111,6 +109,7 @@ model.compile(loss="binary_crossentropy", optimizer=opt,
     metrics=["accuracy"])
 
 # train the head of the network
+start = time.time()
 print("[INFO] training head...")
 H = model.fit_generator(
     trainAug.flow(trainX, trainY, batch_size=BS),
@@ -119,6 +118,9 @@ H = model.fit_generator(
     validation_steps=len(testX) // BS,
     epochs=EPOCHS)
 
+end = time.time()
+duration = end - start
+print("[INFO] Time taken: ",duration)
 # make predictions on the testing set
 print("[INFO] evaluating network...")
 predIdxs = model.predict(testX, batch_size=BS)
@@ -144,8 +146,6 @@ print(cm)
 print("acc: {:.4f}".format(acc))
 print("sensitivity: {:.4f}".format(sensitivity))
 print("specificity: {:.4f}".format(specificity))
-
-
 
 # serialize the model to disk
 print("[INFO] saving barrel detector model...")
