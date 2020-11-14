@@ -133,6 +133,7 @@ predIdxs = np.argmax(predIdxs, axis=1)
 print(classification_report(testY.argmax(axis=1), predIdxs,
     target_names=lb.classes_))
 
+
 # compute the confusion matrix and and use it to derive the raw
 # accuracy, sensitivity, and specificity
 cm = confusion_matrix(testY.argmax(axis=1), predIdxs)
