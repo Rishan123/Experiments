@@ -11,7 +11,7 @@ import cv2
 ap = argparse.ArgumentParser()
 ap.add_argument("-i", "--images", default='predictions',
     help="path to out input directory of images")
-ap.add_argument("-m", "--model", default='/home/pi/Experiments/barrel_detection/barrels.model',
+ap.add_argument("-m", "--model", default='barrels.model',
     help="path to pre-trained model")
 args = vars(ap.parse_args())
 
